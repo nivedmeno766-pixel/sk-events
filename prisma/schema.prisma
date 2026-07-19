@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum EnquiryStatus {
+  NEW
+  CONTACTED
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+}
+
+enum EventType {
+  WEDDING
+  BIRTHDAY
+  CORPORATE
+  STAGE
+  OTHER
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Enquiry {
+  id         String         @id @default(cuid())
+  name       String
+  email      String
+  phone      String
+  eventType  EventType
+  eventDate  DateTime?
+  location   String?
+  budget     String?
+  message    String
+  status     EnquiryStatus  @default(NEW)
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+}
+
+model GalleryImage {
+  id        String   @id @default(cuid())
+  title     String
+  imageUrl  String
+  publicId  String
+  createdAt DateTime @default(now())
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String
+  content     String   @db.Text
+  imageUrl    String
+  publicId    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model WebsiteSettings {
+  id             String @id @default("main")
+
+  heroTitle      String
+  heroSubtitle   String
+
+  phone          String
+  whatsapp       String
+
+  email          String
+
+  instagram      String
+  facebook       String
+
+  address        String
+
+  updatedAt DateTime @updatedAt
+}
