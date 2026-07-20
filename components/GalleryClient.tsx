@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import "yet-another-react-lightbox/styles.css";
 
@@ -20,12 +21,12 @@ export default function GalleryClient({
   return (
     <section
       id="gallery"
-      className="scroll-mt-28 bg-[#090909] px-6 py-24 text-white"
+      className="scroll-mt-28 bg-[#090909] px-6 py-16 text-white md:py-24"
     >
       <div className="mx-auto max-w-7xl">
         {/* Heading */}
         <motion.div
-          className="mb-20 text-center"
+          className="mb-14 text-center md:mb-20"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -88,9 +89,22 @@ export default function GalleryClient({
           ))}
         </div>
 
-        <div className="mt-24 flex justify-center">
-          <div className="h-[2px] w-40 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
-        </div>
+        {/* View Full Gallery */}
+        <motion.div
+          className="mt-16 text-center md:mt-20"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <Link
+            href="/gallery"
+            className="inline-flex items-center gap-3 rounded-full border border-[#D4AF37] px-8 py-4 text-lg font-semibold text-[#D4AF37] transition-all duration-300 hover:bg-[#D4AF37] hover:text-black hover:shadow-[0_0_30px_rgba(212,175,55,0.35)]"
+          >
+            View Full Gallery
+            <span>→</span>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

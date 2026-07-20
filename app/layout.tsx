@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "sonner";
+
 import "./globals.css";
 import "./fonts.css";
-import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,27 +20,27 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://yourdomain.com"), // Replace with your real domain after deployment
+  metadataBase: new URL("https://sk-events-l9wk.vercel.app"),
 
   title: {
-    default: "SK Events | Luxury Event Management",
+    default: "SK Events | Luxury Event Management in Kerala",
     template: "%s | SK Events",
   },
 
   description:
-    "SK Events offers premium wedding events, birthday setups, corporate events, stage decorations, and luxury event management services across Kerala.",
+    "SK Events specializes in luxury weddings, birthday celebrations, corporate events, stage decorations, and premium event planning services across Kerala.",
 
   keywords: [
     "SK Events",
     "Event Management Kerala",
     "Wedding Planner Kerala",
-    "Luxury Wedding",
-    "Birthday Decoration",
-    "Corporate Events",
-    "Stage Decoration",
-    "Event Organizer",
     "Wedding Decoration",
-    "Kerala Events",
+    "Birthday Decoration",
+    "Corporate Event Management",
+    "Stage Decoration",
+    "Luxury Events",
+    "Kerala Event Planner",
+    "Event Organizer Kerala",
   ],
 
   applicationName: "SK Events",
@@ -53,35 +54,54 @@ export const metadata: Metadata = {
     },
   ],
 
+  alternates: {
+    canonical: "/",
+  },
+
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+
+  verification: {
+    google: "", // Add your Google Search Console verification code later
   },
 
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://yourdomain.com",
+    url: "https://sk-events-l9wk.vercel.app",
     siteName: "SK Events",
-    title: "SK Events | Luxury Event Management",
+
+    title: "SK Events | Luxury Event Management in Kerala",
+
     description:
-      "Creating unforgettable weddings, birthdays, corporate events, and stage decorations with elegance and excellence.",
+      "Creating unforgettable weddings, birthday celebrations, corporate events, and stage decorations with elegance and excellence.",
 
     images: [
       {
         url: "/images/hero2.webp",
         width: 1200,
         height: 630,
-        alt: "SK Events",
+        alt: "SK Events Luxury Event Management",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
+
     title: "SK Events | Luxury Event Management",
+
     description:
-      "Luxury weddings, birthday celebrations, corporate events, and stage decorations across Kerala.",
+      "Luxury weddings, birthdays, corporate events, and stage decorations across Kerala.",
 
     images: ["/images/hero2.webp"],
   },

@@ -23,12 +23,12 @@ export default function ServicesClient({
   return (
     <section
       id="services"
-      className="scroll-mt-28 bg-[#0b0b0b] px-6 py-24 text-white"
+      className="scroll-mt-28 bg-[#0b0b0b] px-6 py-16 text-white md:py-24"
     >
       <div className="mx-auto max-w-7xl">
         {/* Heading */}
         <motion.div
-          className="mb-20 text-center"
+          className="mb-14 text-center md:mb-20"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -44,13 +44,12 @@ export default function ServicesClient({
           </h2>
 
           <p className="mx-auto mt-6 max-w-2xl leading-8 text-gray-400">
-            From intimate celebrations to grand luxury events,
-            we deliver memorable experiences with creativity,
-            elegance, and precision.
+            From intimate celebrations to grand luxury events, we deliver
+            memorable experiences with creativity, elegance, and precision.
           </p>
 
           <p className="mt-6 text-sm uppercase tracking-[4px] text-[#D4AF37]/70">
-            {services.length} Premium Event Services
+            Featured Premium Services
           </p>
         </motion.div>
 
@@ -103,7 +102,6 @@ export default function ServicesClient({
                     className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37] px-6 py-3 font-semibold text-[#D4AF37] transition-all duration-300 hover:bg-[#D4AF37] hover:text-black"
                   >
                     View Details
-
                     <span className="transition-transform duration-300 group-hover:translate-x-1">
                       →
                     </span>
@@ -114,33 +112,20 @@ export default function ServicesClient({
           ))}
         </div>
 
-        {/* CTA */}
+        {/* View All Services */}
         <motion.div
-          className="mt-24 rounded-[32px] border border-[#D4AF37]/20 bg-gradient-to-r from-[#111111] to-[#181818] px-8 py-16 text-center"
+          className="mt-16 text-center md:mt-20"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <p className="mb-3 uppercase tracking-[5px] text-[#D4AF37]">
-            Let's Create Something Amazing
-          </p>
-
-          <h3 className="font-cabinet text-3xl font-black md:text-5xl">
-            Planning Your Dream Event?
-          </h3>
-
-          <p className="mx-auto mt-6 max-w-2xl leading-8 text-gray-400">
-            Whether it's a wedding, birthday, corporate event, or a grand
-            celebration, SK Events transforms your vision into unforgettable
-            memories with creativity, elegance, and flawless execution.
-          </p>
-
           <Link
-            href="#contact"
-            className="mt-10 inline-flex rounded-full bg-[#D4AF37] px-10 py-4 text-lg font-bold text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.45)]"
+            href="/services"
+            className="inline-flex items-center gap-3 rounded-full border border-[#D4AF37] px-8 py-4 text-lg font-semibold text-[#D4AF37] transition-all duration-300 hover:bg-[#D4AF37] hover:text-black hover:shadow-[0_0_30px_rgba(212,175,55,0.35)]"
           >
-            Book Your Event
+            View All Services
+            <span>→</span>
           </Link>
         </motion.div>
       </div>
