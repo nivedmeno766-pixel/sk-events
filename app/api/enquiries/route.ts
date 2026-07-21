@@ -1,14 +1,16 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { enquirySchema } from "@/lib/validations";
-import { resend } from "@/lib/resend";
+import { transporter } from "@/lib/nodemailer";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const data = enquirySchema.parse(body);
 
+    // ==========================
     // Save enquiry to database
+    // ==========================
     const enquiry = await prisma.enquiry.create({
       data: {
         name: data.name,
@@ -27,11 +29,11 @@ export async function POST(req: Request) {
     // ==========================
     // Send Admin Notification
     // ==========================
-    const adminResult = await resend.emails.send({
-      from: process.env.FROM_EMAIL!,
-      to: [process.env.ADMIN_EMAIL!],
-      subject: `🎉 New ${data.eventType} Enquiry - ${data.name}`,
+    await transporter.sendMail({
+      from: `"SK Events" <${process.env.GMAIL_USER}>`,
+      to: process.env.ADMIN_EMAIL,
       replyTo: data.email,
+      subject: `🎉 New ${data.eventType} Enquiry - ${data.name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto;">
           <h2 style="color:#D4AF37;">New Enquiry Received</h2>
@@ -55,14 +57,14 @@ export async function POST(req: Request) {
       `,
     });
 
-    console.log("Admin Email:", adminResult);
+    console.log("✅ Admin email sent");
 
     // ==========================
     // Send Customer Confirmation
     // ==========================
-    const customerResult = await resend.emails.send({
-      from: process.env.FROM_EMAIL!,
-      to: [data.email],
+    await transporter.sendMail({
+      from: `"SK Events" <${process.env.GMAIL_USER}>`,
+      to: data.email,
       subject: "Thank you for contacting SK Events ❤️",
       html: `
         <div style="font-family: Arial, sans-serif; max-width:600px; margin:auto;">
@@ -92,7 +94,7 @@ export async function POST(req: Request) {
       `,
     });
 
-    console.log("Customer Email:", customerResult);
+    console.log("✅ Customer email sent");
 
     return NextResponse.json({
       success: true,
